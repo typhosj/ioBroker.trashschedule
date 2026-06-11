@@ -926,7 +926,7 @@ class Trashschedule extends utils.Adapter {
 
                     if (source) {
                         const response = await source.getApiProviders();
-                        const providers = response.map(p => ({ value: p.id, label: `${p.title} (${p.url})` }));
+                        const providers = response.map(p => ({ value: p.id, label: p.title || p.name }));
 
                         if (providers) {
                             this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(providers)}`);
