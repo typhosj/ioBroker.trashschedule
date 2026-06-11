@@ -1149,8 +1149,7 @@ class Trashschedule extends utils.Adapter {
                             if (obj.message?.source === 'api-muellabfuhrde') {
                                 const response = await source.getApiTypes(
                                     provider,
-                                    cityId,
-                                    streetId
+                                    streetId ?? cityId
                                 );
 
                                 types = response.map(t => t.name).join(', ');
