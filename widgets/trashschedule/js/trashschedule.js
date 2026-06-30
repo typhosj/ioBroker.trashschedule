@@ -166,7 +166,7 @@ $.extend(true, systemDictionary, {
 });
 
 vis.binds['trashschedule'] = {
-    version: '5.3.0-f.1',
+    version: '5.3.1-f.1',
     showVersion: function () {
         if (vis.binds['trashschedule'].version) {
             console.log(`Version trashschedule: ${vis.binds['trashschedule'].version}`);

@@ -1,7 +1,7 @@
 <!--
     ioBroker.vis-2 TrashSchedule Widget
 
-    Version: '5.3.0-f.1'
+    Version: '5.3.1-f.1'
 
     Copyright 2024 Matthias Kleine info@haus-automatisierung.com
 -->

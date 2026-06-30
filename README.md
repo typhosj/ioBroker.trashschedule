@@ -54,7 +54,7 @@ iobroker add trashschedule
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### 5.3.0-f.1
+### 5.3.1-f.1
 
 * (@typhosj) Adapter requires node.js >= 22 now
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
