@@ -1225,6 +1225,21 @@ class Trashschedule extends utils.Adapter {
                         if (provider && cityId && (this.isUUID(obj.message?.cityId) || cityId > 0)) {
                             const source = this.sources[obj.message?.source];
 
+                            if (
+                                !streetId &&
+                                typeof source.isStreetRequired === 'function' &&
+                                (await source.isStreetRequired(provider, cityId))
+                            ) {
+                                obj.callback &&
+                                    this.sendTo(
+                                        obj.from,
+                                        obj.command,
+                                        '<span style="color: #d32f2f;">Bitte zuerst eine Straße auswählen.</span>',
+                                        obj.callback,
+                                    );
+                                return;
+                            }
+
                             const response = await source.getApiTypes(
                                 provider,
                                 cityId,
