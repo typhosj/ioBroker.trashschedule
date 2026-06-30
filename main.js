@@ -567,7 +567,7 @@ class Trashschedule extends utils.Adapter {
     }
 
     removeNamespace(id) {
-        const re = new RegExp(`${this.namespace}*\\.`, 'g');
+        const re = new RegExp(`^${this.namespace.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\.`);
         return id.replace(re, '');
     }
 
@@ -757,20 +757,27 @@ class Trashschedule extends utils.Adapter {
                                         this.log.debug(`(4) filled type: "${trashName}"`);
                                     }
 
-                                    // Set next type
-                                    if (next.minTypes.length == 0) {
+                                    if (dayDiff < next.minDays) {
+                                        if (next.minTypes.length > 0) {
+                                            nextAfter.minDays = next.minDays;
+                                            nextAfter.minDate = next.minDate;
+                                            nextAfter.minTypes = [...next.minTypes];
+                                        }
+
                                         next.minDays = dayDiff;
                                         next.minDate = date;
-                                    } else if (nextAfter.minTypes.length == 0) {
+                                        next.minTypes = [];
+                                    } else if (dayDiff > next.minDays && dayDiff < nextAfter.minDays) {
                                         nextAfter.minDays = dayDiff;
                                         nextAfter.minDate = date;
+                                        nextAfter.minTypes = [];
                                     }
 
-                                    if (!next.minTypes.includes(trashName) && next.minDays == dayDiff) {
+                                    if (dayDiff == next.minDays && !next.minTypes.includes(trashName)) {
                                         next.minTypes.push(trashName);
                                     } else if (
-                                        !nextAfter.minTypes.includes(trashName) &&
-                                        nextAfter.minDays == dayDiff
+                                        dayDiff == nextAfter.minDays &&
+                                        !nextAfter.minTypes.includes(trashName)
                                     ) {
                                         nextAfter.minTypes.push(trashName);
                                     }
@@ -1225,8 +1232,13 @@ class Trashschedule extends utils.Adapter {
                                 streetId,
                                 houseNumber,
                             );
-                            const types = response.map(c => c.title ?? c.name).join(', ');
-                            
+                            const types = response
+                                .map(c => {
+                                    const name = c.title ?? c.name ?? c.shortname;
+                                    return c.shortname && c.shortname !== name ? `${name} (${c.shortname})` : name;
+                                })
+                                .join(', ');
+
                             if (types) {
                                 this.log.debug(`[onMessage] ${obj.command} result: ${JSON.stringify(types)}`);
                                 obj.callback && this.sendTo(obj.from, obj.command, types, obj.callback);
