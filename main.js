@@ -1234,7 +1234,7 @@ class Trashschedule extends utils.Adapter {
                                     this.sendTo(
                                         obj.from,
                                         obj.command,
-                                        '<span style="color: #d32f2f;">Bitte zuerst eine Straße auswählen.</span>',
+                                        'Hinweis: Bitte zuerst eine Straße auswählen.',
                                         obj.callback,
                                     );
                                 return;
