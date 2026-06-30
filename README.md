@@ -54,10 +54,12 @@ iobroker add trashschedule
   Placeholder for the next version (at the beginning of the line):
   ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 5.3.0-f.1
 
-* (copilot) Adapter requires node.js >= 22 now
+* (@typhosj) Adapter requires node.js >= 22 now
 * (@klein0r) admin 7.6.20 and js-controller 6.0.11 (or later) are required
+* (@typhosj) Added muellabfuhr-deutschland.de as a data source
+* (@typhosj) Fixed stale package lock and widget version metadata
 
 ### 5.3.0 (2026-04-22)
 

@@ -468,7 +468,7 @@
                     "md": 6,
                     "lg": 6,
                     "xl": 6,
-                    "label": "Bundesland"
+                    "label": "State"
                 },
                 "apiLobbeCityId": {
                     "newLine": true,
@@ -485,7 +485,7 @@
                     "md": 6,
                     "lg": 6,
                     "xl": 6,
-                    "label": "Ort"
+                    "label": "City"
                 },
                 "apiLobbeStreetId": {
                     "newLine": true,
@@ -503,7 +503,7 @@
                     "md": 6,
                     "lg": 6,
                     "xl": 6,
-                    "label": "Straße"
+                    "label": "Street"
                 },
                 "_apiLobbeTypes": {
                     "hidden": "!data.apiLobbeStateId || data.apiLobbeStateId === 'err' || !data.apiLobbeCityId || data.apiLobbeCityId === 'err' || !data.apiLobbeStreetId || data.apiLobbeStreetId === 'err'",
@@ -522,7 +522,7 @@
                     "md": 6,
                     "lg": 6,
                     "xl": 6,
-                    "label": "Verfügbare Typen"
+                    "label": "Available types"
                 }
             }
         },

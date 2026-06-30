@@ -123,6 +123,15 @@ class Trashschedule extends utils.Adapter {
                             name: {
                                 en: 'Action needed',
                                 de: 'Tätigwerden erforderlich',
+                                ru: 'Требуется действие',
+                                pt: 'Ação necessária',
+                                nl: 'Actie vereist',
+                                fr: 'Action requise',
+                                it: 'Azione richiesta',
+                                es: 'Acción requerida',
+                                pl: 'Wymagane działanie',
+                                uk: 'Потрібна дія',
+                                'zh-cn': '需要操作',
                             },
                             type: 'boolean',
                             role: 'switch.enable',
@@ -372,7 +381,7 @@ class Trashschedule extends utils.Adapter {
             const isValid = await this.source.validate();
 
             if (isValid) {
-                this.refreshEverything(); // start data refresh
+                await this.refreshEverything(); // start data refresh
             } else {
                 this.log.info(
                     `[onReady] instance configuration is invalid or incomplete - please configure a valid source`,
@@ -389,7 +398,7 @@ class Trashschedule extends utils.Adapter {
             await this.source.removeOldCacheFiles();
 
             const data = await this.source.getPickupDates();
-            this.updateAll(data);
+            await this.updateAll(data);
         }
 
         // Clear existing timeout
@@ -1234,7 +1243,7 @@ class Trashschedule extends utils.Adapter {
                                     this.sendTo(
                                         obj.from,
                                         obj.command,
-                                        'Hinweis: Bitte zuerst eine Straße auswählen.',
+                                        'Hinweis: Bitte zuerst eine Straße auswählen. / Please select a street first.',
                                         obj.callback,
                                     );
                                 return;
